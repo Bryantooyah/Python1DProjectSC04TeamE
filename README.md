@@ -12,6 +12,6 @@ Sanjan Krishna Sarat - 1009153
 
 Sanjan is white
 LOL
-Khoo is gay
+Sanjan is gay
 
-
+hellooo
