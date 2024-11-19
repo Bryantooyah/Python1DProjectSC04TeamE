@@ -9,3 +9,8 @@ Khoo Jing Xuan - 1008974
 Davin Handreas Chen - 1009595
 Brandon Cheang Ming Wei - 1008839
 Sanjan Krishna Sarat - 1009153
+
+Sanjan is white
+LOL
+
+
