@@ -12,8 +12,6 @@ Sanjan Krishna Sarat - 1009153
 
 Sanjan is white
 LOL
-Newton is gay
+Khoo is gay
 
-
-Newton is not gay
 
