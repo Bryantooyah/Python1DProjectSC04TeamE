@@ -10,6 +10,8 @@ Davin Handreas Chen - 1009595 High Score, End Game
 Brandon Cheang Ming Wei - 1008839 assign ships to the board, Single Player
 Sanjan Krishna Sarat - 1009153 2 Player
 
+Hello I am Sanjan and I am testing hehehe
+
 Features:
 Title Screen:
     - Single player
