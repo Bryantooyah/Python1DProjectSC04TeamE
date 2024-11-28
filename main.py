@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import messagebox as msb
 from PIL import ImageTk, Image, ImageOps
 
+import menu
 class main(object):
     time = 0
 
@@ -30,6 +31,12 @@ class main(object):
         self.__bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         ## Setting Main Frame
+        self.__menu_frame = menu.MenuFrame(self)
+        #self.__arrange_frame = None
+        #self.__game_frame = None
+        #self.__menu_frame.place_frame()
+        
+
     def start(self):
         """
         Starts the mainloop
