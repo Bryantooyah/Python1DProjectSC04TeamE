@@ -24,7 +24,7 @@ class main(object):
         self.__root.protocol("WM_DELETE_WINDOW", self.on_exit_button_pressed)
 
         ## Putting the background image
-        self.__bg = Image.open("Python1DProjectSC04TeamE\images\image.jpg")
+        self.__bg = Image.open("images\image.jpg")
         self.__bg = ImageOps.fit(self.__bg, (APP_MIN_HEIGHT, APP_MIN_HEIGHT))
         self.__bg = ImageTk.PhotoImage(self.__bg)
         self.__bg_label = Label(self.__root, image=self.__bg)

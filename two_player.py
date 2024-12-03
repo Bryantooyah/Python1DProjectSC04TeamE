@@ -21,7 +21,7 @@ p2_grid5x5 = [
 
 def letter_to_num(a):
     dictionary = {'a' : 1,'b' : 2, 'c' : 3, 'd' : 4, 'e' : 5}
-    return didctionary[a]
+    return dictionary[a]
 
 def insert_ship(length, starting_pos, orientation): #starting_pos will be in the format a1, c5, etc
     collumn = starting_pos[0]
@@ -29,4 +29,3 @@ def insert_ship(length, starting_pos, orientation): #starting_pos will be in the
     row = starting_pos[1]
 
     for i in range(length):
-

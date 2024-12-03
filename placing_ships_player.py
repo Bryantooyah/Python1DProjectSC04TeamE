@@ -10,25 +10,25 @@ empty_grid5x5 = {
 
 # Making player choose initial square
 
-row_select = input("Choose a row to place the ship.")
+row_select = input("Choose a row to place the ship: ")
 while int(row_select) < 1 or int(row_select) > 5:
-    row_select = input("Choose a different row to place the ship.")
-column_select = input("Choose a column to place the ship.")
+    row_select = input("Choose a different row to place the ship: ")
+column_select = input("Choose a column to place the ship: ")
 while int(column_select) < 1 or int(column_select) > 5:
-    column_select = input("Choose a different column to place the ship.")
+    column_select = input("Choose a different column to place the ship: ")
 
 # Choosing Final Piece
 
-final_row_select = input("Choose a row to finish the ship.")
+final_row_select = input("Choose a row to finish the ship: ")
 while int(final_row_select) < 1 or int(final_row_select) > 5:
-    final_row_select = input("Choose a different row to finish the ship.")
+    final_row_select = input("Choose a different row to finish the ship: ")
 while abs(int(row_select) - int(final_row_select)) > 4:
-    final_row_select = input("Choose a different row to finish the ship.")
-final_column_select = input("Choose a column to finish the ship.")
+    final_row_select = input("Choose a different row to finish the ship: ")
+final_column_select = input("Choose a column to finish the ship: ")
 while int(final_column_select) < 1 or int(final_column_select) > 5:
-    final_column_select = input("Choose a different column to finish the ship.")
+    final_column_select = input("Choose a different column to finish the ship: ")
 while abs(int(column_select) - int(final_column_select)) > 4:
-    final_column_select = input("Choose a different column to finish the ship.")
+    final_column_select = input("Choose a different column to finish the ship: ")
 
 # Placing the ship
 
