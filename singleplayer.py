@@ -10,7 +10,6 @@ horizontal_select = {"a":1, "b":2, "c":3, "d":4, "e":5}
 
 def safety_checks(square):
     # Making sure there is only one number and one letter
-
     numbers = 0
     letters = 0
     while letters == 0 or numbers == 0:
@@ -25,10 +24,7 @@ def safety_checks(square):
             letters = 0
 
     # Making sure it is within the grid
-
     tester = 0
-    overlap_tester = 0
-
     while tester < 2:
         for i in range(len(square)):
             if square[i].isnumeric() and 0 < int(square[i]) < 6:
@@ -61,6 +57,35 @@ def direction_check(direction,row,column,length):
             checker += 1
     return direction
 
+def overlap_check(direction,row,column,length):
+    test_row = row
+    test_column = column
+    for i in range(length):
+        if direction == 'NORTH':
+            test_row -= 1
+            if p1_grid5x5[test_row][test_column] == 'X':
+                return False
+            else:
+                return True
+        elif direction == 'SOUTH':
+            test_row += 1
+            if p1_grid5x5[test_row][test_column] == 'X':
+                return False
+            else:
+                return True
+        elif direction == 'EAST':
+            test_column += 1
+            if p1_grid5x5[test_row][test_column] == 'X':
+                return False
+            else:
+                return True
+        elif direction == 'WEST':
+            test_column -= 1
+            if p1_grid5x5[test_row][test_column] == 'X':
+                return False
+            else:
+                return True
+
 def final_ship(direction,row,column,length):
     if direction == "NORTH":
         for i in range(length-1):
@@ -83,30 +108,28 @@ def placing_ship(length):
     row, column = 0, 0
 
     # Choosing the first square
-
     square = input('Choose a square: ').lower()
-
     row, column = safety_checks(square)[0],safety_checks(square)[1]
-
     while p1_grid5x5[row][column] == 'X':
         square = input('Choose a different square: ').lower()
         row,column = safety_checks(square)[0],safety_checks(square)[1]
-
     p1_grid5x5[row][column] = "X"
 
     # NSEW?
-
     direction = input('Place the ship North, South, East or West')
     direction = direction.upper()
     directions = ['NORTH', 'SOUTH', 'EAST', 'WEST']
-
     while direction not in directions:
         direction = input('Choose a different direction: ').upper()
-    direction = direction_check(direction,row,column,length)
+    direction = direction_check(direction, row, column, length)
+    while overlap_check(direction,row,column,length) == False:
+        direction = input('Choose a different direction: ').upper()
+        overlap_check(direction,row,column,length)
     final_ship(direction, row, column, length)
     return p1_grid5x5
 
+placed_grid = placing_ship(2)
+placed_grid = placing_ship(2)
 placed_grid = placing_ship(3)
 placed_grid = placing_ship(3)
-for i in placed_grid:
-    print(i)
+placed_grid = placing_ship(4)
