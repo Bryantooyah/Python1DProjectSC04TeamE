@@ -61,6 +61,24 @@ def direction_check(direction,row,column,length):
             checker += 1
     return direction
 
+def final_ship(direction,row,column,length):
+    if direction == "NORTH":
+        for i in range(length-1):
+            row = row - 1
+            p1_grid5x5[row][column] = 'X'
+    if direction == "SOUTH":
+        for i in range(length-1):
+            row = row + 1
+            p1_grid5x5[row][column] = 'X'
+    if direction == "EAST":
+        for i in range(length-1):
+            column = column + 1
+            p1_grid5x5[row][column] = 'X'
+    if direction == "WEST":
+        for i in range(length-1):
+            column = column - 1
+            p1_grid5x5[row][column] = 'X'
+
 def placing_ship(length):
     row, column = 0, 0
 
@@ -84,25 +102,8 @@ def placing_ship(length):
 
     while direction not in directions:
         direction = input('Choose a different direction: ').upper()
-
     direction = direction_check(direction,row,column,length)
-
-    if direction == "NORTH":
-        for i in range(length-1):
-            row = row - 1
-            p1_grid5x5[row][column] = 'X'
-    if direction == "SOUTH":
-        for i in range(length-1):
-            row = row + 1
-            p1_grid5x5[row][column] = 'X'
-    if direction == "EAST":
-        for i in range(length-1):
-            column = column + 1
-            p1_grid5x5[row][column] = 'X'
-    if direction == "WEST":
-        for i in range(length-1):
-            column = column - 1
-            p1_grid5x5[row][column] = 'X'
+    final_ship(direction, row, column, length)
     return p1_grid5x5
 
 placed_grid = placing_ship(3)
