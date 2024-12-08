@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import messagebox as msb
 from PIL import ImageTk, Image, ImageOps
 
-import menu
+import Python1DProjectSC04TeamE.old_menu as old_menu
 import singleplayer 
 import two_player 
 import highscore
@@ -39,7 +39,7 @@ class main(object):
         self.__bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         ## Setting start frame
-        self.__start_frame = menu.startFrame(self)
+        self.__start_frame = old_menu.startFrame(self)
         self.__start_frame.place_frame()
         
 
@@ -62,7 +62,7 @@ class main(object):
 
     def on_submit_button_pressed(self):
         self.__start_frame.displace_frame()
-        self.__menu_frame = menu.menuFrame(self)
+        self.__menu_frame = old_menu.menuFrame(self)
         self.__menu_frame.place_frame()
 
     def on_exit_button_pressed(self):
@@ -86,7 +86,7 @@ class main(object):
     
     def on_setting_button_pressed(self):
         self.__menu_frame.displace_frame()
-        self.__setting_frame = menu.settingFrame(self)
+        self.__setting_frame = old_menu.settingFrame(self)
         self.__setting_frame.place_frame()
         
 
