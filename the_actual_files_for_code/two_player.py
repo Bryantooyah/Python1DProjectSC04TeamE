@@ -1,7 +1,7 @@
 import os
 import copy
 
-class TwoPlayerGame:
+class TwoPlayerGame(object):
     def __init__(self):
         self.ship_sizes = [2, 2, 3, 3, 4]
         self.p1_grid = self.create_grid()

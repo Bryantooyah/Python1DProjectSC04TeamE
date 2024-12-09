@@ -1,9 +1,9 @@
-from highscore import HistoryLog
+import highscore
 ## Title Screen
 class main(object):
     def __init__(self, context):
         self.__context = context
-    
+        self.__historylog = highscore.HistoryLog(self)
     
     def title_screen(self):
         print(r"""
@@ -61,12 +61,12 @@ class main(object):
             print("Setting new username...")
             new_name = self.__context.username()
             self.settings(new_name)
-        elif choice == "2":
-            print("History Log:")  # Placeholder for history log
-            self.settings(name)
-            History_Log = HistoryLog()
-            History_Log.display_history()
 
+        elif choice == "2":
+            print("Viewing History Log...")
+            self.__historylog.display_history(name)
+            self.settings(name)
+        
         elif choice == "3":
             print("Back to Title Screen.")
             self.__context.Menu(name)
