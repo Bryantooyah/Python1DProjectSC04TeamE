@@ -1,5 +1,6 @@
 import os
 import copy
+import time
 
 class TwoPlayerGame(object):
     def __init__(self):
@@ -203,6 +204,7 @@ class TwoPlayerGame(object):
         self.clear_screen()
         self.print_instructions()
         input("\nPress Enter to start the game...")
+        start_time = time.time()
 
         # Player 1 places ships
         for size in self.ship_sizes:
@@ -272,6 +274,9 @@ class TwoPlayerGame(object):
             if self.check_win(self.p2_grid):
                 self.print_you_win()
                 print("\nPlayer 1 wins!")
+                end_time = time.time()
+                duration = end_time - start_time
+                print(f'The game lasted for {duration} seconds')
                 break
 
             self.player_turn(2, self.p2_grid, self.p1_grid, self.p1_ships)
@@ -286,6 +291,9 @@ class TwoPlayerGame(object):
             if self.check_win(self.p1_grid):
                 self.print_you_win()
                 print("\nPlayer 2 wins!")
+                end_time = time.time()
+                duration = end_time - start_time
+                print(f'The game lasted for {duration} seconds')
                 break
 
         # After game ends, offer the option to retry or go back to menu
