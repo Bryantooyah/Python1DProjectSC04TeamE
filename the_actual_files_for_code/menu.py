@@ -48,7 +48,8 @@ class main(object):
             return "5"
         else:
             print("Invalid option. Try again.")
-            self.options(name)
+            return self.options(name)
+        
     ## Settings
     def settings(self, name):
         print("\n=== Settings ===")
@@ -59,20 +60,20 @@ class main(object):
 
         if choice == "1":
             print("Setting new username...")
-            new_name = self.__context.username()
-            self.settings(new_name)
+            new_name = self.__context.changeusername(name)
+            return self.settings(new_name)
 
         elif choice == "2":
             print("Viewing History Log...")
             self.__historylog.display_history(name)
-            self.settings(name)
+            return self.settings(name)
         
         elif choice == "3":
             print("Back to Title Screen.")
             self.__context.Menu(name)
         else:
             print("Invalid option. Try again.")
-            self.settings(name)
+            return self.settings(name)
 
 
     ## Quit

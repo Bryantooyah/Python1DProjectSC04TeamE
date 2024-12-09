@@ -1,3 +1,9 @@
-User, Score, Time, Date, Mode
-Bryan,150,120,2024-12-02 14:35:45,singleplayer
-Sanjan,180,90,2024-12-02 15:10:20,singleplayer
+User, Score, Time, Date, Mode, Condition
+loser, 16, 324, 2024-12-09 21:47:56, singleplayer, Loss 
+winner, 0, 111, 2024-12-09 21:55:39, twoplayer, None 
+maple, -5, 194, 2024-12-09 21:58:04, singleplayer, Loss 
+Max1, 101, 199, 2024-12-09 22:14:05, singleplayer, Win
+Max1, 103, 199, 2024-12-09 22:14:05, singleplayer, Win 
+Max1, 103, 200, 2024-12-09 22:14:05, singleplayer, Win 
+Max2, -5, 188, 2024-12-09 22:20:12, singleplayer, Win
+urmom, -7, 104, 2024-12-09 22:29:20, singleplayer, Loss 

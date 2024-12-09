@@ -277,7 +277,7 @@ class TwoPlayerGame(object):
                 end_time = time.time()
                 duration = end_time - start_time
                 print(f'The game lasted for {duration} seconds')
-                break
+                return duration
 
             self.player_turn(2, self.p2_grid, self.p1_grid, self.p1_ships)
             # Hide the screen after Player 2's turn before Player 1's turn
@@ -294,14 +294,4 @@ class TwoPlayerGame(object):
                 end_time = time.time()
                 duration = end_time - start_time
                 print(f'The game lasted for {duration} seconds')
-                break
-
-        # After game ends, offer the option to retry or go back to menu
-        while True:
-            choice = input("\nGame Over! Would you like to (R)etry or go back to (M)enu?: ").strip().lower()
-            if choice == 'r':
-                return "retry"
-            elif choice == 'm':
-                return "menu"
-            else:
-                print("Invalid choice. Please type 'r' or 'm'.")
+                return duration
