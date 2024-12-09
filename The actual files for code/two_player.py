@@ -6,16 +6,19 @@ def clear_screen():
 
 def create_grid():
     return [
-        ["x", "a", "b", "c", "d", "e"],
-        ["1", " ", " ", " ", " ", " "],
-        ["2", " ", " ", " ", " ", " "],
-        ["3", " ", " ", " ", " ", " "],
-        ["4", " ", " ", " ", " ", " "],
-        ["5", " ", " ", " ", " ", " "],
+        ["x","a","b","c","d","e","f","g","h"],
+        ["1"," "," "," "," "," "," "," "," "],
+        ["2"," "," "," "," "," "," "," "," "],
+        ["3"," "," "," "," "," "," "," "," "],
+        ["4"," "," "," "," "," "," "," "," "],
+        ["5"," "," "," "," "," "," "," "," "],
+        ["6"," "," "," "," "," "," "," "," "],
+        ["7"," "," "," "," "," "," "," "," "],
+        ["8"," "," "," "," "," "," "," "," "],
     ]
 
 def letter_to_num(letter):
-    dictionary = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+    dictionary = {'a': 1,'b': 2,'c': 3,'d': 4,'e': 5,'f': 6,'g': 7,'h': 8}
     return dictionary.get(letter.lower(), -1)
 
 def insert_ship(length, starting_pos, orientation, grid):
@@ -23,6 +26,8 @@ def insert_ship(length, starting_pos, orientation, grid):
     Returns (status, new_grid, ship_coords).
     status: "success" or "error"
     ship_coords: set of (row, col) tuples occupied by the ship on success."""
+    if len(starting_pos) < 2:
+        return "error", grid, None
     col = letter_to_num(starting_pos[0])
     try:
         row = int(starting_pos[1])
@@ -33,7 +38,7 @@ def insert_ship(length, starting_pos, orientation, grid):
     ship_coords = set()
 
     for _ in range(length):
-        if 1 <= row <= 5 and 1 <= col <= 5 and grid[row][col] == " ":
+        if 1 <= row <= 8 and 1 <= col <= 8 and grid[row][col] == " ":
             grid[row][col] = 's'
             ship_coords.add((row, col))
         else:
@@ -94,7 +99,7 @@ def player_turn(player, own_grid, opponent_grid, opponent_ships):
             print("Invalid format, try again.")
             continue
 
-        if 1 <= row <= 5 and 1 <= col <= 5:
+        if 1 <= row <= 8 and 1 <= col <= 8:
             if opponent_grid[row][col] == "s":
                 print("Hit!")
                 opponent_grid[row][col] = "x"
@@ -113,7 +118,7 @@ def player_turn(player, own_grid, opponent_grid, opponent_ships):
 
     input("\nPress Enter to continue...")
 
-def battleship_game():
+def two_player_mode():
     # Clear the screen and display ASCII art at the start
     clear_screen()
     print(r"""
@@ -125,10 +130,26 @@ def battleship_game():
  |____/ \__,_|\__|\__|_|\___||___/_| |_|_| .__/ 
                                           | |    
                                           |_|    
-  
-  Created by Sanjan, Max, Brandon, Davin and Bryan^2 <3
-  -----------------------------------------------------
-   """)
+
+          WELCOME TO TWO PLAYER MODE
+    """)
+
+    print("Instructions:")
+    print("1. The grid is 8x8. Columns are labeled a-h, and rows are labeled 1-8.")
+    print("2. You and your opponent will place 5 ships each:")
+    print("   - 2 ships of length 2")
+    print("   - 2 ships of length 3")
+    print("   - 1 ship of length 4")
+    print("3. To place a ship, you will be asked for a starting position (e.g., 'a1') ")
+    print("   and an orientation ('n' for north/up, 's' for south/down, 'e' for east/right, 'w' for west/left).")
+    print("4. Ships cannot overlap or be placed outside the grid.")
+    print("5. On your turn, guess a cell (e.g., 'c5'). A hit will be marked with 'x', a miss with 'o'.")
+    print("   If you sink all opponent ships, you win!")
+    input("\nPress Enter to start the game...")
+
+    # Define ship sizes for each player
+    # 2 ships of length 2, 2 ships of length 3, 1 ship of length 4
+    ship_sizes = [2, 2, 3, 3, 4]
 
     p1_grid = create_grid()
     p2_grid = create_grid()
@@ -137,13 +158,15 @@ def battleship_game():
     p2_ships = []
 
     # Player 1 places ships
+    clear_screen()
     print("Player 1, place your ships")
-    for i in range(2):
+    for i, size in enumerate(ship_sizes, start=1):
         while True:
             display_grid(p1_grid)
-            start = input(f"\nEnter the starting position for ship {i + 1} (e.g., a1): ").strip().lower()
+            print(f"\nYou need to place a ship of length {size}.")
+            start = input("Enter the starting position for this ship (e.g., a1): ").strip().lower()
             orient = input("Enter orientation (n, s, e, w): ").strip().lower()
-            result, p1_grid, coords = insert_ship(3, start, orient, p1_grid)
+            result, p1_grid, coords = insert_ship(size, start, orient, p1_grid)
             if result == "success":
                 p1_ships.append(coords)
                 break
@@ -154,12 +177,13 @@ def battleship_game():
 
     # Player 2 places ships
     print("Player 2, place your ships")
-    for i in range(2):
+    for i, size in enumerate(ship_sizes, start=1):
         while True:
             display_grid(p2_grid)
-            start = input(f"\nEnter the starting position for ship {i + 1} (e.g., a1): ").strip().lower()
+            print(f"\nYou need to place a ship of length {size}.")
+            start = input("Enter the starting position for this ship (e.g., a1): ").strip().lower()
             orient = input("Enter orientation (n, s, e, w): ").strip().lower()
-            result, p2_grid, coords = insert_ship(3, start, orient, p2_grid)
+            result, p2_grid, coords = insert_ship(size, start, orient, p2_grid)
             if result == "success":
                 p2_ships.append(coords)
                 break
@@ -180,6 +204,13 @@ def battleship_game():
             print("Player 2 wins!")
             break
 
-# Run the game
-battleship_game()
+    # After game ends, offer the option to retry or go back to menu
+    while True:
+        choice = input("\nGame Over! Would you like to (R)etry or go back to (M)enu?: ").strip().lower()
+        if choice == 'r':
+            return two_player_mode()
+        elif choice == 'm':
+            return "menu"
+        else:
+            print("Invalid choice. Please type 'r' or 'm'.")
 
