@@ -1,7 +1,7 @@
 import os
 import menu
 #import singleplayer
-from two_player.py import two_player
+from two_player import two_player
 #import highscore
 
 class main(object):
@@ -14,8 +14,9 @@ class main(object):
             print("Invalid username. Try again.")
             self.username()
         else:
+            #for testing purposes
             script_dir = os.path.dirname(os.path.abspath(__file__))
-            file_path = os.path.join(script_dir, "high_score.txt")
+            file_path = os.path.join(script_dir, "high_score.csv")
             file = open(file_path, 'r')
             for line in file:
                 if name == line: # Davin please make sure this works check username taken from leaderboard
@@ -39,7 +40,6 @@ class main(object):
             elif result == "menu":
                 #self.Menu(name) show menu
                 pass
-
         # elif option == "3":
         #     #highscore.start()
         elif option == "4":

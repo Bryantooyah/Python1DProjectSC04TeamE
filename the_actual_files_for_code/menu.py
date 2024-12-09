@@ -1,3 +1,4 @@
+from highscore import HistoryLog
 ## Title Screen
 class main(object):
     def __init__(self, context):
@@ -48,27 +49,30 @@ class main(object):
         else:
             print("Invalid option. Try again.")
             self.options(name)
-## Settings
-def settings(self, name):
-    print("\n=== Settings ===")
-    print("1. Set Username")
-    print("2. View History Log")
-    print("3. Back to Title Screen")
-    choice = input("Select an option (1-3): ")
+    ## Settings
+    def settings(self, name):
+        print("\n=== Settings ===")
+        print("1. Set Username")
+        print("2. View History Log")
+        print("3. Back to Title Screen")
+        choice = input("Select an option (1-3): ")
 
-    if choice == "1":
-        print("Setting new username...")
-        new_name = self.__context.username()
-        self.settings(new_name)
-    elif choice == "2":
-        print("History Log: .")  # Placeholder for history log
-        self.settings(name)
-    elif choice == "3":
-        print("Back to Title Screen.")
-        self.__context.Menu(name)
-    else:
-        print("Invalid option. Try again.")
-        self.settings(name)
+        if choice == "1":
+            print("Setting new username...")
+            new_name = self.__context.username()
+            self.settings(new_name)
+        elif choice == "2":
+            print("History Log:")  # Placeholder for history log
+            self.settings(name)
+            History_Log = HistoryLog()
+            History_Log.display_history()
+
+        elif choice == "3":
+            print("Back to Title Screen.")
+            self.__context.Menu(name)
+        else:
+            print("Invalid option. Try again.")
+            self.settings(name)
 
 
     ## Quit
