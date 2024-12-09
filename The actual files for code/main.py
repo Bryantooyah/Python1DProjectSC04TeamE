@@ -1,7 +1,7 @@
 import os
 import menu
 #import singleplayer
-#import two_player
+from two_player.py import two_player
 #import highscore
 
 class main(object):
@@ -30,13 +30,19 @@ class main(object):
     
     def Menu(self, name):
         option = self.__menu.options(name)
-        # if option == "1":
-        #     #singleplayer.start()
-        # elif option == "2":
-        #     #two_player.start()
+        #if option == "1":
+            #singleplayer.start()
+        if option == "2":
+            result = two_player()
+            if result == "retry":
+                two_player()
+            elif result == "menu":
+                #self.Menu(name) show menu
+                pass
+
         # elif option == "3":
         #     #highscore.start()
-        if option == "4":
+        elif option == "4":
             self.__menu.settings(name)
         elif option == "5":
             self.__menu.exit()

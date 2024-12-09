@@ -61,6 +61,7 @@ class High_Score:
         for i, data in enumerate(top_scores, 1):
             print(f"{i}. {data['username']} - {data['score']} points (Time: {data['time_taken']} seconds, Played on: {data['date_time']})")
 
+
 class HistoryLog:
     def __init__(self, file="high_score.csv"):
         self.file = file

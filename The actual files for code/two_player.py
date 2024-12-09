@@ -260,5 +260,3 @@ def two_player():
             return "menu"
         else:
             print("Invalid choice. Please type 'r' or 'm'.")
-
-two_player()
