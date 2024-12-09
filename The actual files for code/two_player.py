@@ -23,9 +23,7 @@ def letter_to_num(letter):
 
 def insert_ship(length, starting_pos, orientation, grid):
     """Attempt to insert a ship into the grid.
-    Returns (status, new_grid, ship_coords).
-    status: "success" or "error"
-    ship_coords: set of (row, col) tuples occupied by the ship on success."""
+    Returns (status, new_grid, ship_coords)."""
     if len(starting_pos) < 2:
         return "error", grid, None
     col = letter_to_num(starting_pos[0])
@@ -80,6 +78,7 @@ def handle_hit(row, col, opponent_ships):
 
 def player_turn(player, own_grid, opponent_grid, opponent_ships):
     clear_screen()
+    print_instructions()
     print(f"Player {player}'s Turn\n")
     print("Your grid:")
     display_grid(own_grid)
@@ -118,37 +117,82 @@ def player_turn(player, own_grid, opponent_grid, opponent_ships):
 
     input("\nPress Enter to continue...")
 
-def two_player_mode():
-    # Clear the screen and display ASCII art at the start
-    clear_screen()
-    print(r"""
-  ____        _   _   _           _     _       
- |  _ \      | | | | | |         | |   (_)      
- | |_) | __ _| |_| |_| | ___  ___| |__  _ _ __  
- |  _ < / _` | __| __| |/ _ \/ __| '_ \| | '_ \ 
- | |_) | (_| | |_| |_| |  __/\__ \ | | | | |_) |
- |____/ \__,_|\__|\__|_|\___||___/_| |_|_| .__/ 
-                                          | |    
-                                          |_|    
+def print_instructions():
+    # Wartorn colors: alternate red and yellow lines
+    battleship_ascii = [
+        "  ____        _   _   _           _     _       ",
+        " |  _ \\      | | | | | |         | |   (_)      ",
+        " | |_) | __ _| |_| |_| | ___  ___| |__  _ _ __  ",
+        " |  _ < / _` | __| __| |/ _ \\/ __| '_ \\| | '_ \\ ",
+        " | |_) | (_| | |_| |_| |  __/\\__ \\ | | | | |_) |",
+        " |____/ \\__,_|\\__|\\__|_|\\___||___/_| |_|_| .__/ ",
+        "                                          | |    ",
+        "                                          |_|    "
+    ]
 
-          WELCOME TO TWO PLAYER MODE
-    """)
+    # Colors
+    red = "\033[31m"
+    yellow = "\033[33m"
+    reset = "\033[0m"
 
+    # Print the battleship ASCII in alternating red and yellow lines for a war-torn effect
+    for i, line in enumerate(battleship_ascii):
+        color = red if i % 2 == 0 else yellow
+        print(color + line + reset)
+
+    print("\n                 WELCOME TO BATTLESHIP\n")
     print("Instructions:")
-    print("1. The grid is 8x8. Columns are labeled a-h, and rows are labeled 1-8.")
-    print("2. You and your opponent will place 5 ships each:")
-    print("   - 2 ships of length 2")
-    print("   - 2 ships of length 3")
-    print("   - 1 ship of length 4")
-    print("3. To place a ship, you will be asked for a starting position (e.g., 'a1') ")
-    print("   and an orientation ('n' for north/up, 's' for south/down, 'e' for east/right, 'w' for west/left).")
-    print("4. Ships cannot overlap or be placed outside the grid.")
-    print("5. On your turn, guess a cell (e.g., 'c5'). A hit will be marked with 'x', a miss with 'o'.")
-    print("   If you sink all opponent ships, you win!")
+    print("1. The grid is 8x8. Columns: a-h, Rows: 1-8.")
+    print(f"2. Each player places 5 ships:")
+    print(f"   - 2 ships of length \033[31m2\033[0m")
+    print(f"   - 2 ships of length \033[31m3\033[0m")
+    print(f"   - 1 ship of length \033[31m4\033[0m")
+    print("3. To place a ship, enter a start position (e.g., 'a1') and orientation ('n', 's', 'e', 'w').")
+    print("4. Ships cannot overlap or go outside the grid.")
+    print("5. During your turn, guess a cell (e.g., 'c5'). 'x' is a hit, 'o' is a miss.")
+    print("   Sink all opponent ships to win!")
+    print("------------------------------------------------")
+
+def print_you_win():
+    clear_screen()
+    ascii_art = [
+"                                     |__",
+"                                     |\\/",
+"                                     ---",
+"                                     / | [",
+"                              !      | |||",
+"                            _/|     _/|-++'",
+"                        +  +--|    |--|--|_ |-",
+"                     { /|__|  |/\\__|  |--- |||__/",
+"                    +---------------___[}-_===_.'____                 /\\",
+"                ____`-' ||___-{]_| _[}-  |     |_[___\\==--            \\/   _",
+" __..._____--==/___]_|__|_____________________________[___\\==--____,------' .7",
+        "|                                You win!!!                             BB-61/",
+" \\_________________________________________________________________________|"
+    ]
+
+    rainbow_colors = [
+        "\033[31m", # Red
+        "\033[33m", # Yellow
+        "\033[32m", # Green
+        "\033[36m", # Cyan
+        "\033[34m", # Blue
+        "\033[35m", # Magenta
+    ]
+    reset = "\033[0m"
+
+    for i, line in enumerate(ascii_art):
+        color = rainbow_colors[i % len(rainbow_colors)]
+        print(color + line + reset)
+
+
+def two_player():
+    # Clear the screen and print instructions at the start
+    clear_screen()
+    print_instructions()
     input("\nPress Enter to start the game...")
 
     # Define ship sizes for each player
-    # 2 ships of length 2, 2 ships of length 3, 1 ship of length 4
     ship_sizes = [2, 2, 3, 3, 4]
 
     p1_grid = create_grid()
@@ -158,13 +202,14 @@ def two_player_mode():
     p2_ships = []
 
     # Player 1 places ships
-    clear_screen()
-    print("Player 1, place your ships")
-    for i, size in enumerate(ship_sizes, start=1):
+    for size in ship_sizes:
         while True:
+            clear_screen()
+            print_instructions()
+            print("\nPlayer 1, place your ship.")
             display_grid(p1_grid)
-            print(f"\nYou need to place a ship of length {size}.")
-            start = input("Enter the starting position for this ship (e.g., a1): ").strip().lower()
+            print(f"\nYou need to place a ship of length \033[31m{size}\033[0m.")
+            start = input("Enter the starting position (e.g., a1): ").strip().lower()
             orient = input("Enter orientation (n, s, e, w): ").strip().lower()
             result, p1_grid, coords = insert_ship(size, start, orient, p1_grid)
             if result == "success":
@@ -172,16 +217,17 @@ def two_player_mode():
                 break
             else:
                 print("Invalid position or orientation. The ship was not placed. Try again.")
-
-    clear_screen()
+                input("Press Enter to continue...")
 
     # Player 2 places ships
-    print("Player 2, place your ships")
-    for i, size in enumerate(ship_sizes, start=1):
+    for size in ship_sizes:
         while True:
+            clear_screen()
+            print_instructions()
+            print("\nPlayer 2, place your ship.")
             display_grid(p2_grid)
-            print(f"\nYou need to place a ship of length {size}.")
-            start = input("Enter the starting position for this ship (e.g., a1): ").strip().lower()
+            print(f"\nYou need to place a ship of length \033[31m{size}\033[0m.")
+            start = input("Enter the starting position (e.g., a1): ").strip().lower()
             orient = input("Enter orientation (n, s, e, w): ").strip().lower()
             result, p2_grid, coords = insert_ship(size, start, orient, p2_grid)
             if result == "success":
@@ -189,28 +235,30 @@ def two_player_mode():
                 break
             else:
                 print("Invalid position or orientation. The ship was not placed. Try again.")
+                input("Press Enter to continue...")
 
     # Game loop
     while True:
-        # Player 1's turn
         player_turn(1, p1_grid, p2_grid, p2_ships)
         if check_win(p2_grid):
-            print("Player 1 wins!")
+            print_you_win()
+            print("\nPlayer 1 wins!")
             break
 
-        # Player 2's turn
         player_turn(2, p2_grid, p1_grid, p1_ships)
         if check_win(p1_grid):
-            print("Player 2 wins!")
+            print_you_win()
+            print("\nPlayer 2 wins!")
             break
 
     # After game ends, offer the option to retry or go back to menu
     while True:
         choice = input("\nGame Over! Would you like to (R)etry or go back to (M)enu?: ").strip().lower()
         if choice == 'r':
-            return two_player_mode()
+            return "retry"
         elif choice == 'm':
             return "menu"
         else:
             print("Invalid choice. Please type 'r' or 'm'.")
 
+two_player()
