@@ -115,8 +115,6 @@ def player_turn(player, own_grid, opponent_grid, opponent_ships):
         else:
             print("Out of bounds. Try again.")
 
-    input("\nPress Enter to continue...")
-
 def print_instructions():
     # Wartorn colors: alternate red and yellow lines
     battleship_ascii = [
@@ -140,7 +138,7 @@ def print_instructions():
         color = red if i % 2 == 0 else yellow
         print(color + line + reset)
 
-    print("\n                 WELCOME TO BATTLESHIP\n")
+    print("\n               WELCOME TO TWO PLAYER MODE\n")
     print("Instructions:")
     print("1. The grid is 8x8. Columns: a-h, Rows: 1-8.")
     print(f"2. Each player places 5 ships:")
@@ -219,6 +217,17 @@ def two_player():
                 print("Invalid position or orientation. The ship was not placed. Try again.")
                 input("Press Enter to continue...")
 
+    # After Player 1 is done placing ships
+    print("\nPlayer 1 is done placing ships. Press Enter once to hide the screen.")
+    input()  # Press enter once
+    clear_screen()
+    print("Screen hidden. Press Enter again to proceed for Player 2.")
+    input()  # Press enter twice
+    clear_screen()
+
+    # Reprint instructions for Player 2
+    print_instructions()
+
     # Player 2 places ships
     for size in ship_sizes:
         while True:
@@ -240,12 +249,28 @@ def two_player():
     # Game loop
     while True:
         player_turn(1, p1_grid, p2_grid, p2_ships)
+        # Hide the screen after Player 1's turn before Player 2's turn
+        print("\nPlayer 1's turn complete. Press Enter once to hide the screen.")
+        input()
+        clear_screen()
+        print("Screen hidden. Press Enter again to proceed to Player 2's turn.")
+        input()
+        clear_screen()
+
         if check_win(p2_grid):
             print_you_win()
             print("\nPlayer 1 wins!")
             break
 
         player_turn(2, p2_grid, p1_grid, p1_ships)
+        # Hide the screen after Player 2's turn before Player 1's turn
+        print("\nPlayer 2's turn complete. Press Enter once to hide the screen.")
+        input()
+        clear_screen()
+        print("Screen hidden. Press Enter again to proceed to Player 1's turn.")
+        input()
+        clear_screen()
+
         if check_win(p1_grid):
             print_you_win()
             print("\nPlayer 2 wins!")
@@ -260,3 +285,4 @@ def two_player():
             return "menu"
         else:
             print("Invalid choice. Please type 'r' or 'm'.")
+
