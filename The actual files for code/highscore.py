@@ -1,21 +1,24 @@
+from datetime import datetime
+
 class High_Score:
-    def __init__(self, file_name="high_score"):
+    def __init__(self, file_name="high_score.csv"):
         self.file_name = file_name
     
     # Sample usage:
-    # object.save_high_score(160)
+    # object.save_high_score(Bryan, 160)
 
-    def save_high_score(self, score):
+    def save_high_score(self, username, score, time):
         file = open(self.file_name, 'a')
         file.write(f"{score}")
         file.close()
     
-    def load_high_score(self, score):
+    def load_high_score(self):
         high_scores = []
         try:
             file = open(self.file_name, 'r')
             for line in file:
-                high_scores.append({"score": int(score)})
+                username, score = line.strip().split(",")
+                high_scores.append({"username": username, "score": int(score)})
         except FileNotFoundError:
             pass
         return high_scores
