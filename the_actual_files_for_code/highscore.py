@@ -1,5 +1,4 @@
 from datetime import datetime
-import csv
 
 class High_Score:
     def __init__(self, file="high_score.csv"):
@@ -7,6 +6,9 @@ class High_Score:
     
     def calculate_score(self, ships_destroyed, hits, misses):
         return ships_destroyed * 20 + hits * 5 - misses * 3
+    
+    # Sample usage:
+    # object.save_high_score(Bryan, 160)
 
     def save_high_score(self, username, score, time_taken, mode):
         date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -17,13 +19,13 @@ class High_Score:
         high_scores = []
         try:
             with open(self.file, 'r') as file:
-                converted_file = csv.reader(file)
-                for line in converted_file:
+                for line in file:
+                    username, score, time_taken, date_time, mode = line.strip().split(",")
                     high_scores.append({
-                        "username": line[0], 
-                        "score": int(line[1]), 
-                        "time_taken": int(line[2]),
-                        "date_time": line[3],
+                        "username": username, 
+                        "score": int(score), 
+                        "time_taken": int(time_taken),
+                        "date_time": date_time,
                         "mode": mode})
         except FileNotFoundError:
             pass
