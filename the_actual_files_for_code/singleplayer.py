@@ -148,7 +148,7 @@ class main(object):
             if guess_coord is None:
                 print("Invalid coordinate. Try again.")
             elif type(guess_coord) == tuple:
-                row,column = guess_coord
+                row,col = guess_coord
                 if defender_hit_miss_grid[row][col] != ' ':
                     print('Cannot guess the same grid. Try again.')
                 else:

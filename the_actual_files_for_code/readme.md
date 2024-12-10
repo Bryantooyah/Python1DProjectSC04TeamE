@@ -49,7 +49,18 @@ Single Player:
 5) check_ship_sunk
 - this code firstly registers all the grids that one ship occupies. As every time a ship is hit the grid will change from a 'S' to a 'X', Once all the grids of one ship has been replaced with a 'X', the ship is sunk. Afterwhich it will determine if the board which has the ship sunk belongs to 'Player' or 'Computer'.
 6) attack_position
-- 
+- Processes the attack made by the Computer and Player and updates it on the relevant grids and scores.
+7) random_computer_guess
+- Generates a random guess for the computer on the players grid.
+8) print_hit_miss_grid
+- Shows the player what grid he/she has hit on the computers(opponent's) board.
+9) play_game
+- The main game function that includes the following:
+    - Introduction to the game
+    - Instructions to the player to place the ships while updating the grids as the player places them.
+    - As game starts, a timer starts at the background
+    - When it is the players turn to attack, the code will prompt the player to do so while registering from the codes above on how many ship grids 'S' are left. If none are left, the game will end. This logic is also true for the computer. 
+    - When the game ends, the code will display the score attined by the player and the duration of the game. If the player won against the computer, the code will congratulate the player. However if the player lost, the code will say "better luck next time". 
 
 2 Player:
 1. create_grid
