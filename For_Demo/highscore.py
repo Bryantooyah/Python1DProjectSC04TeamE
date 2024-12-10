@@ -85,16 +85,18 @@ class HistoryLog:
         try:
              with open(self.file, 'r') as file:
                 converted_file = csv.reader(file)
+                if not any(converted_file):  # If the file has no content
+                    return "gg"  # Return an empty list
+                file.seek(0)  # Reset the file pointer
                 for line in converted_file:
-                    if line == []:
-                        continue
-                    game_history.append({
-                        "username": line[0], 
-                        "score": line[1], 
-                        "time_taken": line[2],
-                        "date_time": line[3],
-                        "mode": line[4],
-                        "win_loss": line[5]})
+                    if len(line) ==6:
+                        game_history.append({
+                            "username": line[0], 
+                            "score": line[1], 
+                            "time_taken": line[2],
+                            "date_time": line[3],
+                            "mode": line[4],
+                            "win_loss": line[5]})
         except FileNotFoundError:
             print("No game history found. Play a game first!")
         return game_history

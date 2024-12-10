@@ -24,8 +24,6 @@ class main(object):
             file = open(file_path, 'r')
             converted_file = csv.reader(file)
             for line in converted_file:
-                if line == []:
-                    continue
                 if name == line[0]:
                     print("Username already exists. Try again.")
                     return self.username()
@@ -46,6 +44,8 @@ class main(object):
             file = open(file_path, 'r')
             converted_file = csv.reader(file)
             for line in converted_file:
+                if line == []:
+                    continue
                 if name == line[0]:
                     print("Username already exists. Try again.")
                     return self.changeusername(name)
@@ -54,7 +54,7 @@ class main(object):
     ## Start Menu
     def start(self):
         self.__menu.title_screen()
-        name = self.username()
+        name = "Brandon"
         return name
     ## Menu
     def Menu(self, name):

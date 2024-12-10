@@ -49,7 +49,7 @@ class main(object):
                     letters += 1
                 elif i.isnumeric():
                     numbers += 1
-            if letters != 1 or numbers != 1:
+            if letters == 0 or numbers == 0:
                 return None
             if coord[0].isalpha():
                 col = LETTERS.index(coord[0].lower())
@@ -145,14 +145,13 @@ class main(object):
             self.print_grid(defender_hit_miss_grid)
             guess = input("Enter a position to attack (e.g., A1): ").strip()
             guess_coord = self.coordinate_to_index(guess)
+            row, col = guess_coord
             if guess_coord is None:
                 print("Invalid coordinate. Try again.")
-            elif type(guess_coord) == tuple:
-                row,column = guess_coord
-                if defender_hit_miss_grid[row][col] != ' ':
-                    print('Cannot guess the same grid. Try again.')
-                else:
-                    player = False
+            elif defender_hit_miss_grid[row][col] != ' ':
+                print('Cannot guess the same grid. Try again.')
+            else:
+                player = False
 
         # For computer guess
         if not is_player_turn:
