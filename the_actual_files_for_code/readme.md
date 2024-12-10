@@ -51,19 +51,28 @@ Single Player:
 6) attack_position
 - 
 
-2 Player:
+----------------
+
+2 Player (Some functions like print_you_win have not been given as it is self explanatory):
 1. create_grid
-- initiates the grid for game
+- Initiates the grid for game
+
 2. letter_to_num
-- changes the column from alphabert to number
+- Changes the column from alphabet to number
+
 3. insert_ship
-- player places a ship within the grid coordinates (e.g. A1) and that will be the starting point. After that the player must decide the orientation of the ship using North(n), South(s), East(e) and West(w). This will be where the rest of the ship will be in relation to the starting point.
+- Player places a ship within the grid coordinates (e.g. A1) and that will be the starting point. After that the player must decide the orientation of the ship using North(n), South(s), East(e) and West(w). This will be where the rest of the ship will be in relation to the starting point.
+
 4. handle_hit
 - Remove the hit coordinate from the appropriate ship in opponent_ships. If a ship is completely destroyed, announce it.
+
 5. player_turn
-- handles the attacking of oponent ships
-6. print_you_win
-- 
+- Handles the attacking of opponent ships
+
+6. run
+- This function compiles all the functions given above and runs the game. 
+
+-----------------
 
 High Score:
 The HighScore class is designed to manage and display high scores for a game, handling tasks such as saving, loading, filtering, sorting, and displaying scores. The class initializes with a default file, high_score.csv, where all score records are stored. 
