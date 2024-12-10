@@ -49,7 +49,7 @@ class main(object):
                     letters += 1
                 elif i.isnumeric():
                     numbers += 1
-            if letters == 0 or numbers == 0:
+            if letters != 1 or numbers != 1:
                 return None
             if coord[0].isalpha():
                 col = LETTERS.index(coord[0].lower())
@@ -75,7 +75,7 @@ class main(object):
                 direction = input("Enter direction ('n' for north, 's' for south, 'e' for east, 'w' for west): ").strip().lower()
                 start_coord = self.coordinate_to_index(start)
             else:
-                start_coord = (random.randint(0, GRID_SIZE - 1), random.randint(0, GRID_SIZE - 1))
+                start_coord = (random.randint(1, GRID_SIZE), random.randint(1, GRID_SIZE))
                 direction = random.choice(['n', 's', 'e', 'w'])
 
             if start_coord is None:
@@ -145,13 +145,14 @@ class main(object):
             self.print_grid(defender_hit_miss_grid)
             guess = input("Enter a position to attack (e.g., A1): ").strip()
             guess_coord = self.coordinate_to_index(guess)
-            row, col = guess_coord
             if guess_coord is None:
                 print("Invalid coordinate. Try again.")
-            elif defender_hit_miss_grid[row][col] != ' ':
-                print('Cannot guess the same grid. Try again.')
-            else:
-                player = False
+            elif type(guess_coord) == tuple:
+                row,col = guess_coord
+                if defender_hit_miss_grid[row][col] != ' ':
+                    print('Cannot guess the same grid. Try again.')
+                else:
+                    player = False
 
         # For computer guess
         if not is_player_turn:

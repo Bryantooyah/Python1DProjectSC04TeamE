@@ -75,7 +75,7 @@ class main(object):
                 direction = input("Enter direction ('n' for north, 's' for south, 'e' for east, 'w' for west): ").strip().lower()
                 start_coord = self.coordinate_to_index(start)
             else:
-                start_coord = (random.randint(0, GRID_SIZE - 1), random.randint(0, GRID_SIZE - 1))
+                start_coord = (random.randint(1, GRID_SIZE), random.randint(1, GRID_SIZE))
                 direction = random.choice(['n', 's', 'e', 'w'])
 
             if start_coord is None:

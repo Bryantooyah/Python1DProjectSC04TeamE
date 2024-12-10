@@ -73,7 +73,7 @@ class TwoPlayerGame(object):
                 print(" ".join(row))
 
     @staticmethod
-    def check_win(grid):
+    def display_grid(grid):
         for row in grid:
             if 's' in row:
                 return False

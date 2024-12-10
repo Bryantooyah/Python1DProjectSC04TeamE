@@ -24,7 +24,9 @@ class main(object):
             file = open(file_path, 'r')
             converted_file = csv.reader(file)
             for line in converted_file:
-                if name == line[0]:
+                if line == []:
+                    continue
+                elif name == line[0]:
                     print("Username already exists. Try again.")
                     return self.username()
             return name
@@ -46,7 +48,7 @@ class main(object):
             for line in converted_file:
                 if line == []:
                     continue
-                if name == line[0]:
+                elif name == line[0]:
                     print("Username already exists. Try again.")
                     return self.changeusername(name)
             return name

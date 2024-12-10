@@ -37,7 +37,6 @@ Title Screen:
     - Quit game {Quits the game}
 
 Single Player:
-{Provide longer explanation with what is in it}
 1) create_grid
 - makes the grid for player and computer.
 2) coord_to_index
@@ -97,6 +96,7 @@ There are 4 main functions within this class, which includes:
 
 4. display_high_score: This function prints the top 10 single-player high scores when called, including the rank, username, score, time, and the date and time when the score was achieved.
 
+-----------------
 
 Settings:
 Contain the followig functions:
