@@ -66,7 +66,17 @@ Single Player:
 - 
 
 High Score:
-{Provide longer explanation with what is in it}
+The HighScore class is designed to manage and display high scores for a game, handling tasks such as saving, loading, filtering, sorting, and displaying scores. The class initializes with a default file, high_score.csv, where all score records are stored. 
+
+There are 4 main functions within this class, which includes: 
+1. save_score: Append new score entries to the csv file, including the player's username, score, time taken (rounded to the nearest integer), game mode ("singleplayer" or "twoplayer"), and the game's status ("Win" or "Loss"). 
+
+2. load_high_score: Reads the CSV file, filtering records where the condition is a "Win." If a player appears multiple times in the file, this function evaluates their best record based on the highest score and, in case of ties, the shortest time. Only the best record for each user is retained in the list of high scores.
+
+3. sort_high_scores: This function takes in the list of high scores, process specifically for single-player mode, and sort the records in descending order of score. If scores are tied, it sorts them in ascending order of time taken. It returns the top 10 scores after sorting. 
+
+4. display_high_score: This function prints the top 10 single-player high scores when called, including the rank, username, score, time, and the date and time when the score was achieved.
+
 
 Settings:
 Contain the followig functions:
